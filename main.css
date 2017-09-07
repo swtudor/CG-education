@@ -120,14 +120,11 @@ li h2{
 }
 
 .course-container {
-  width: 90%;
-  height: 800px;
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: baseline;
-  align-items: flex-start;
-  margin: 0 3%;
-  padding: 0 2%;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 2%;
 }
 
 .profile-pic{
@@ -145,17 +142,17 @@ li h2{
   flex-flow: row wrap;
   justify-content: space-around;
   align-items: center;
+	flex-basis: 40%;
   background-color: #fdfdfd;
   border: 2px solid #bbb;
-  width:450px;
-  margin: 5%;
+  margin: 2%;
 }
 .course-left, .course-right{
   padding: 3%;
 }
 .course-right{
   border-left: 2px solid #bbb;
-  padding-left: 15%;
+  flex-basis: 55%;
 }
 
 /* ---------------
@@ -173,10 +170,10 @@ li h2{
 
 .teacher-name{
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  margin: 2%;
+  padding: 1%;
 }
 
 .bottom-box{
