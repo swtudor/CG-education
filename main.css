@@ -132,6 +132,16 @@ li h2{
   width:6.25em;
   border-radius: 50%;
   flex-basis:6.25em;
+	padding: 5%;
+}
+
+.bottom-box{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content:space-evenly;
+  margin: 2%;
+	padding: 5%;
+	border-top: 2px solid #bbb;
 }
 
 /* --------------
@@ -173,14 +183,51 @@ li h2{
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  padding: 1%;
+  padding: 2%;
+}
+.teacher-courses, .teacher-rating{
+	text-align: center;
 }
 
-.bottom-box{
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content:space-evenly;
-  margin: 2%;
-  text-align: center;
 
+/*------------------
+  students.html
+------------------*/
+.student-profile{
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
+	flex-basis: 28%;
+	background-color: #fafafa;
+	margin: 2%;
 }
+
+.student-name{
+	display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  padding: 10%;
+}
+
+.student-left{
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: flex-end;
+	padding-right: 3%;
+}
+.student-right{
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: flex-start;
+	padding-left: 3%;
+}
+/* .group-left{
+	text-align:right;
+}
+.group-right{
+	text-align:left;
+} */
