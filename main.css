@@ -47,7 +47,7 @@ table {
    Font Styles
 -------------*/
 h1, h2, h3, h4, p, a{
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Exo 2', sans-serif;
   line-height: 1.5625em;
 }
  em{
@@ -112,7 +112,9 @@ li h2{
 /* ----------------
    Body Styles & repeated properties
 ------------------ */
-
+body{
+	background: #CFCFCF url(images/bg-future-school.jpg) center center repeat;
+}
 .container{
   display:flex;
   flex-flow:row wrap;
@@ -202,7 +204,6 @@ li h2{
 	background-color: #fafafa;
 	margin: 2%;
 }
-
 .student-name{
 	display: flex;
   flex-flow: column nowrap;
@@ -210,7 +211,19 @@ li h2{
   align-items: center;
   padding: 10%;
 }
-
+.bottom-box-student{
+	display:flex;
+	flex-flow:column nowrap;
+	justify-content: space-between;
+	align-items: center;
+}
+.student-details{
+	display:flex;
+	flex-flow:row nowrap;
+	justify-content: space-around;
+	align-items:center;
+	padding:3%;
+}
 .student-left{
 	display: flex;
 	flex-flow: column nowrap;
@@ -225,9 +238,9 @@ li h2{
 	align-items: flex-start;
 	padding-left: 3%;
 }
-/* .group-left{
+/*.group-left{
 	text-align:right;
 }
 .group-right{
 	text-align:left;
-} */
+}*/
