@@ -154,20 +154,24 @@ body{
 -----------------*/
 .course-box{
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   justify-content: space-around;
   align-items: center;
-	flex-basis: 40%;
-  background-color: #fafafa;
+	flex-basis: 45%;
+	height:125px;
+	background-color: #fafafa;
   border: 2px solid #2b4458;
   margin: 2%;
 }
 .course-left, .course-right{
   padding: 3%;
 }
+.course-left{
+	width:60%;
+}
 .course-right{
   border-left: 2px solid #bbb;
-  flex-basis: 55%;
+  flex-basis: 40%;
 }
 
 /* ---------------
@@ -211,6 +215,7 @@ body{
 	justify-content: center;
 	align-items: center;
 	flex-basis: 28%;
+	height:400px;
 	background-color: #fafafa;
 	margin: 2%;
 }
@@ -219,6 +224,7 @@ body{
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+	text-align:center;
   padding: 10%;
 }
 .bottom-box-student{
@@ -248,9 +254,90 @@ body{
 	align-items: flex-start;
 	padding-left: 3%;
 }
-/*.group-left{
-	text-align:right;
+
+/* ---------------
+  Media Queries
+----------------*/
+
+@media screen and (max-width:1075px){
+	.container {
+		flex-flow: column wrap;
+		align-items: center;
+	}
+/* course page fixes */
+	.course-container{
+		flex-direction:column;
+	}
+	.course-box{
+		width: 75%;
+	}
+	.course-left{
+		width:60%;
+	}
+/* student page fixes */
+	.student-profile{
+		width:40%;
+	}
+	.bottom-box{
+		height:175px;
+	}
+/* teacher page fixes */
+	.teacher-box{
+		width:50%;
+		}
 }
-.group-right{
-	text-align:left;
-}*/
+@media screen and (max-width:860px){
+		header{
+			flex-flow: column nowrap;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.nav-right{
+	    width: 100%;
+	    text-align: center;
+		}
+		.nav-left{
+			width:100%;
+			text-align: center;
+		}
+}
+
+@media screen and (max-width:690px){
+	.student-profile{
+		width:60%;
+		margin-bottom: 5%;
+	}
+	.teacher-box{
+		width:75%;
+		margin-bottom: 5%;
+		}
+		.course-box{
+			width: 90%;
+			height:150px;
+		}
+}
+@media screen and (max-width:430px){
+	.student-profile{
+		width:80%;
+	}
+	.teacher-box{
+		width:90%;
+	}
+	li{
+		display: inline;
+		padding: 0;
+		border:none;
+		}
+}
+@media screen and (max-width:330px){
+	.course-box{
+		height:175px;
+	}
+	.student-profile{
+		width:90%;
+	}
+	.teacher-box{
+		width:95%;
+	}
+}
