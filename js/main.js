@@ -10,14 +10,13 @@ function getAvgRating (){
   for(var i = 0; i < rating.length; i++) {
     total += rating[i];
   }
-  var avg = total / rating.length;
+  avg = total / rating.length;
   avg = avg.toFixed(2);
   console.log (avg);
 }
-
 var avgRating = getAvgRating (rating);
 
-console.log("Teacher: " + teacherName + "\nDepartment: " + department + "\nRatings: " + rating + "\nAvg. Rating: " +avgRating);
+console.log("Teacher: " + teacherName + "\nDepartment: " + department + "\nRatings: " + rating + "\nAvg. Rating: " +avg);
 
 // Students:
 var studentName = "Punkk Y. Gregorson";
