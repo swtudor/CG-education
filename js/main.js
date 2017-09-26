@@ -1,13 +1,23 @@
 console.log("This file is linked!");
+// Teachers:
 var teacherName = "Zak VonBolt";
 var department = "Engineering";
-var ratingOne = 3.2;
-var ratingTwo = 4.5;
-var ratingThree = 3.8;
-var avgRating = (ratingOne+ratingTwo+ratingThree)/3;
-avgRating = avgRating.toFixed(2);
+var rating =[3.8, 4.0, 3.2];
+console.log (rating)
 
-console.log("Teacher: " + teacherName + "\nDepartment: " + department + "\nRatings: " + ratingOne +", " +ratingTwo +", " + ratingThree + "\nAvg. Rating: " +avgRating);
+function getAvgRating (){
+  var total = 0;
+  for(var i = 0; i < rating.length; i++) {
+    total += rating[i];
+  }
+  var avg = total / rating.length;
+  avg = avg.toFixed(2);
+  console.log (avg);
+}
+
+var avgRating = getAvgRating (rating);
+
+console.log("Teacher: " + teacherName + "\nDepartment: " + department + "\nRatings: " + rating + "\nAvg. Rating: " +avgRating);
 
 // Students:
 var studentName = "Punkk Y. Gregorson";
