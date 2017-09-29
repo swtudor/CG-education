@@ -1,50 +1,38 @@
 // Teachers:
+//Declarations
 var teacherName = "Zak VonBolt";
 var department = "Engineering";
-var rating =[3.8, 4.0, 3.2];
-var newRating = 2.5;
+var teacherRating =[3.8, 4.0, 3.2];
+
+function addTeacherRating(addRating, rating){
+  rating.push(addRating);
+  return rating;
+}
 
 function getAvgRating (rating){
   var total = 0;
   for(var i = 0; i <rating.length; i++) {
     total += rating[i];
   }
-  var avg = total / rating.length;
-  avg = avg.toFixed(2);
+  var avg = (total / rating.length).toFixed(2);
   return avg;
 }
 
-function addTeacherRating(newRating, rating){
-  rating.push(newRating);
-  return rating;
+// Instructions-
+
+
+var newRating = parseFloat(prompt("We would like for you to review you instructor. Please enter a rating between 0.0 - 5.0?"));
+
+if(newRating >5.0){
+  prompt("Please re-enter a variable that is between 0.0 and 5.0");
+}else{
+  console.log(teacherRating);
 }
-
-rating = addTeacherRating (newRating, rating);
-console.log (rating);
-
-var avgRating = getAvgRating (rating);
-
-
-console.log("Teacher: " + teacherName + "\nDepartment: " + department + "\nRatings: " + rating + "\nAvg. Rating: " +avgRating);
-
-/* seems like a better choice for the addTeacherRating function but it keeps going wonky. Want to fix
-
-function addTeacherRating(newRating, rating){
-  if (rating.length==0){
-    rating.push(newRating);
-  }else{
-    for (var i=0; i<rating; i++){
-      if(rating [i]==undefined){
-        rating[i] = newRating;
-        return rating;
-      }else if (i==rating.length -1){
-        rating.push(newRating);
-        return rating;
-      }
-    }
-  }
-}
-*/
+teacherRating = addTeacherRating (newRating, teacherRating);
+var avgRating = getAvgRating (teacherRating);
+console.log(teacherRating + avgRating);
+alert("Thanks for you review!" +teacherName +" average rating is now " +avgRating);
+console.log("Teacher: " + teacherName + "\nDepartment: " + department + "\nRatings: " + teacherRating + "\nAvg. Rating: " +avgRating);
 
 // Students:
 var studentName = "Punkk Y. Gregorson";
