@@ -1,4 +1,5 @@
 // Teachers:
+
 //Declarations
 var teacherName = "Zak VonBolt";
 var department = "Engineering";
@@ -19,12 +20,10 @@ function getAvgRating (rating){
 }
 
 // Instructions-
-
-
 var newRating = parseFloat(prompt("We would like for you to review you instructor. Please enter a rating between 0.0 - 5.0?"));
 
 if(newRating >5.0){
-  prompt("Please re-enter a variable that is between 0.0 and 5.0");
+  parseFloat(prompt("Please re-enter a variable that is between 0.0 and 5.0"));
 }else{
   console.log(teacherRating);
 }
@@ -43,4 +42,5 @@ console.log("Name: " +studentName + "\nMajor: " +major +"\nG.P.A: " +gpa);
 //Courses:
 var courseName ="Robotics";
 var semester ="Fall 2017";
+var courses=[[courseTitle, Department], ]
 console.log("Course: " + courseName +"\nTeacher: " +teacherName +"\nSemester: " +semester);
