@@ -1,3 +1,5 @@
+'use strict';
+
 // Teachers:
 
 //Declarations
@@ -50,8 +52,9 @@ var allCourses=[
   ["Blargh!!!", "Engineering"],
   ["20th Century Baking Techniques", "History"],
   ["Self-Paving Roads", "Engineering"],
-  ["Raining Poodles", "Meterology"]
-  ["Yippee!","History"]];
+  ["Raining Poodles", "Meterology"],
+  ["Yippee!","History"]
+];
 
 //Instructions:
 /* The function should return a new array
@@ -60,9 +63,8 @@ filled with courses that are ONLY in the department specified in the parameter.*
 function searchCourses (coursesArray, departmentSearched){
   var newArray=[];
   for (var i=0; i<coursesArray.length;i++){
-      if (coursesArray[i][1]==departmentSearched){
+      if (coursesArray[i][1]===departmentSearched){
         newArray.push(coursesArray[i][0]);
-        newArray[i++];
       }else{
         console.log("FAIL");
       }
@@ -71,7 +73,6 @@ function searchCourses (coursesArray, departmentSearched){
 
 var test=searchCourses(allCourses, department);
 console.log(test);
-
 /*
   for(var i=0; i<coursesArray.length; i++){
     if (coursesArray[i][1]===departmentSearched){
