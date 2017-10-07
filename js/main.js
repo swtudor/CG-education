@@ -50,15 +50,12 @@ var allCourses=[
   ["Mammals: Changes Post-Nuclear War", "Biology"],
   ["Birds!", "Biology"],
   ["Blargh!!!", "Engineering"],
+  ["Origins of the MonoRace", "History"],
   ["20th Century Baking Techniques", "History"],
   ["Self-Paving Roads", "Engineering"],
   ["Raining Poodles", "Meterology"],
   ["Yippee!","History"]
 ];
-
-//Instructions:
-/* The function should return a new array
-filled with courses that are ONLY in the department specified in the parameter.*/
 
 function searchCourses (coursesArray, departmentSearched){
   var newArray=[];
@@ -71,18 +68,29 @@ function searchCourses (coursesArray, departmentSearched){
   } return newArray;
 }
 
-var test=searchCourses(allCourses, department);
-console.log(test);
-/*
-  for(var i=0; i<coursesArray.length; i++){
+function validate (departmentSearched,coursesArray){
+  for (var i=0; i<coursesArray.length;i++){
     if (coursesArray[i][1]===departmentSearched){
-      return departmentSearched;
-      console.log(departmentSearched);
-    }else{
-      return console.log("There are no courses currently available in "+departmentSearched + " at this point.");
+      return true;
     }
   }
-}*/
+  return false;
+}
+
 //Instructions:
-allCourses=searchCourses(allCourses, department);
+var departmentToSearch = prompt("What department would you like to look for classes in?");
+
+var isValid = false;
+
+while (!isValid){
+  isValid = validate (departmentToSearch, allCourses);
+  if(isValid){
+    allCourses=searchCourses(allCourses, departmentToSearch);
+    alert("Courses available for " + departmentToSearch + " are: " + allCourses);
+  }else{
+    departmentToSearch = prompt("That department does not exist, please try again!");
+  }
+}
+
+
 console.log("Course: " + courseName +"\nTeacher: " +teacherName +"\nSemester: " +semester);
