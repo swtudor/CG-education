@@ -36,10 +36,57 @@ alert("Thanks for you review!" +teacherName +" average rating is now " +avgRatin
 console.log("Teacher: " + teacherName + "\nDepartment: " + department + "\nRatings: " + teacherRating + "\nAvg. Rating: " +avgRating);
 */
 // Students:
+//Declarations:
 var studentName = "Punkk Y. Gregorson";
 var major ="Painting";
 var gpa =2.8;
+var date = new Date();
+var currentYear = date.getFullYear();
+var currentMonth =date.getMonth();
+
+var welcomeCollegeStudent = function(studentClass){alert("Welcome " + studentClass +"!");};
+
+var welcomeHsStudent = function(studentClass){alert("You're still a " +studentClass +" in highschool!")};
+
+var gradDate = function(month, year){return month + " " +year;};
+
+var findStudentClass = function (year){
+  year= parseInt(year);
+  var gradClass = "graduation";
+  if (year <= currentYear +1  && year <= currentYear +4){
+    if (year === currentYear +1){
+      gradClass= "Senior";
+    }else if (year === currentYear +2){
+      gradClass= "Junior";
+    }else if (year === currentYear +3){
+      gradClass = "Sophmore";
+    }else if (year ===currentYear +4){
+      gradClass = "Freshman";
+    }
+  }else if (year >= currentYear+5 && year <=currentYear+8){
+    if (year === currentYear +5){
+      gradClass= "Highschool Senior";
+    }else if (year === currentYear +6){
+      gradClass= "Highschool Junior";
+    }else if (year === currentYear +7){
+      gradClass= "Highschool Sophmore";
+    }else if (year === currentYear +8){
+      gradClass= "Highschool Freshman";
+    }
+  }else if (year >= currentYear +9){
+    gradClass= "Whoa, hold up! College is still some years away!";
+  }return gradClass;
+};
+
+
+//Instructions:
 console.log("Name: " +studentName + "\nMajor: " +major +"\nG.P.A: " +gpa);
+
+var userYear = findStudentClass (prompt("Please enter the year you will gradutate from college."));
+console.log(userYear);
+
+
+
 
 //Courses:
 // Declarations:
@@ -78,7 +125,7 @@ function validate (departmentSearched,coursesArray){
 }
 
 //Instructions:
-var departmentToSearch = prompt("What department would you like to look for classes in?");
+/*var departmentToSearch = prompt("What department would you like to look for classes in?");
 
 var isValid = false;
 
@@ -91,6 +138,5 @@ while (!isValid){
     departmentToSearch = prompt("That department does not exist, please try again!");
   }
 }
-
-
+*/
 console.log("Course: " + courseName +"\nTeacher: " +teacherName +"\nSemester: " +semester);
