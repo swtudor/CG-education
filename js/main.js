@@ -42,7 +42,7 @@ var major ="Painting";
 var gpa =2.8;
 var date = new Date();
 var currentYear = date.getFullYear();
-var currentMonth =date.getMonth();
+console.log(currentYear);
 
 var welcomeCollegeStudent = function(studentClass){alert("Welcome " + studentClass +"!");};
 
@@ -50,40 +50,66 @@ var welcomeHsStudent = function(studentClass){alert("You're still a " +studentCl
 
 var gradDate = function(month, year){return month + " " +year;};
 
-var findStudentClass = function (year){
+var findStudentClass = function (month, year){
   year= parseInt(year);
-  var gradClass = "graduation";
-  if (year <= currentYear +1  && year <= currentYear +4){
-    if (year === currentYear +1){
-      gradClass= "Senior";
-    }else if (year === currentYear +2){
-      gradClass= "Junior";
-    }else if (year === currentYear +3){
-      gradClass = "Sophmore";
-    }else if (year ===currentYear +4){
-      gradClass = "Freshman";
+  var gradClass = "This function is not working. FIX YOUR CODE!";
+  if (month==="May"){
+    if (year === currentYear +1 && year <= currentYear +4){
+      if (year === currentYear +1){
+        gradClass= "Senior";
+      }else if (year === currentYear +2){
+        gradClass= "Junior";
+      }else if (year === currentYear +3){
+        gradClass = "Sophmore";
+      }else if (year ===currentYear +4){
+        gradClass = "Freshman";
+      } alert(welcomeCollegeStudent(gradClass));
+    }else if (year >= currentYear+5 && year <=currentYear+8){
+      if (year === currentYear +5){
+        gradClass= "Highschool Senior";
+      }else if (year === currentYear +6){
+        gradClass= "Highschool Junior";
+      }else if (year === currentYear +7){
+        gradClass= "Highschool Sophmore";
+      }else if (year === currentYear +8){
+        gradClass= "Highschool Freshman";
+      } alert(welcomeHsStudent(gradClass));
     }
-  }else if (year >= currentYear+5 && year <=currentYear+8){
-    if (year === currentYear +5){
-      gradClass= "Highschool Senior";
-    }else if (year === currentYear +6){
-      gradClass= "Highschool Junior";
-    }else if (year === currentYear +7){
-      gradClass= "Highschool Sophmore";
-    }else if (year === currentYear +8){
-      gradClass= "Highschool Freshman";
-    }
-  }else if (year >= currentYear +9){
-    gradClass= "Whoa, hold up! College is still some years away!";
-  }return gradClass;
+  }else if (month === "December"){
+      if (year === currentYear  && year <= currentYear +3){
+        if (year === currentYear){
+          gradClass= "Senior";
+        }else if (year === currentYear +1){
+          gradClass= "Junior";
+        }else if (year === currentYear +2){
+          gradClass = "Sophmore";
+        }else if (year ===currentYear +3){
+          gradClass = "Freshman";
+        }alert(welcomeCollegeStudent(gradClass));
+      }else if (year >= currentYear+4 && year <=currentYear+7){
+        if (year === currentYear +4){
+          gradClass= "Highschool Senior";
+        }else if (year === currentYear +5){
+          gradClass= "Highschool Junior";
+        }else if (year === currentYear +6){
+          gradClass= "Highschool Sophmore";
+        }else if (year === currentYear +7){
+          gradClass= "Highschool Freshman";
+        }alert(welcomeHsStudent(gradClass));
+      }
+    }else if (year >= currentYear +9){
+      gradClass= alert("Whoa, hold up! College is still some years away!");
+    }return gradClass;
 };
 
 
-//Instructions:
+//Students Page -Instructions:
 console.log("Name: " +studentName + "\nMajor: " +major +"\nG.P.A: " +gpa);
+var userYear = prompt("Please enter the year you will gradutate from college.");
+var userMonth= prompt("Will you graduate in May or December?");
 
-var userYear = findStudentClass (prompt("Please enter the year you will gradutate from college."));
-console.log(userYear);
+var result = findStudentClass (userMonth, userYear);
+console.log(result);
 
 
 
