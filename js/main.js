@@ -3,38 +3,39 @@
 // Teachers:
 
 //Declarations
-var teacherName = "Zak VonBolt";
-var department = "Engineering";
-var teacherRating =[3.8, 4.0, 3.2];
+var teacher = {
+  name:"Zak VonBolt",
+  department: "Engineering",
+  ratings:[3.8, 4.0, 3.2],
+  addTeacherRating: function(newRating){
+    this.ratings.push(newRating);
+  },
+  getAvgRating: function (){
+    var total = 0;
+    for(var i = 0; i <this.ratings.length; i++) {
+      total += this.ratings[i];
+      }
+      var avg = (total / this.ratings.length).toFixed(2);
+      return avg;
+  },
+};
 
-function addTeacherRating(addRating, rating){
-  rating.push(addRating);
-  return rating;
-}
-
-function getAvgRating (rating){
-  var total = 0;
-  for(var i = 0; i <rating.length; i++) {
-    total += rating[i];
-  }
-  var avg = (total / rating.length).toFixed(2);
-  return avg;
-}
+var confirmRating = function(newRating){
+  if(newRating >5.0){
+    parseFloat(confirm("Please re-enter a variable that is between 0.0 and 5.0"));
+  }else{
+    console.log(teacher.ratings);
+};
 
 // Instructions-
-/* !!!!Commented out temprorarily!!!!
-var newRating = parseFloat(prompt("We would like for you to review you instructor. Please enter a rating between 0.0 - 5.0?"));
-if(newRating >5.0){
-  parseFloat(confirm("Please re-enter a variable that is between 0.0 and 5.0"));
-}else{
-  console.log(teacherRating);
-}
-teacherRating = addTeacherRating (newRating, teacherRating);
-var avgRating = getAvgRating (teacherRating);
-console.log(teacherRating + avgRating);
-alert("Thanks for you review!" +teacherName +" average rating is now " +avgRating);
-console.log("Teacher: " + teacherName + "\nDepartment: " + department + "\nRatings: " + teacherRating + "\nAvg. Rating: " +avgRating);
-*/
+console.log(teacher.getAvgRating());
+
+teacher.addTeacherRating (parseFloat(prompt("We would like for you to review you instructor. Please enter a rating between 0.0 - 5.0?")));
+//confirmRating(teacher.addTeacherRating);
+console.log(teacher.getAvgRating());
+alert("Thanks for you review!" +teacher.name +" average rating is now " +teacher.getAvgRating());
+console.log("Teacher: " + teacher.name  + "\nDepartment: " + teacher.department + "\nRatings: " + teacher.ratings + "\nAvg. Rating: " +teacher.getAvgRating());
+
 // Students:
 //Declarations:
 var studentName = "Punkk Y. Gregorson";
@@ -105,12 +106,12 @@ var findStudentClass = function (month, year){
 
 //Students Page -Instructions:
 console.log("Name: " +studentName + "\nMajor: " +major +"\nG.P.A: " +gpa);
+/* !!!!Commented out temprorarily!!!!
 var userYear = prompt("Please enter the year you will gradutate from college.");
 var userMonth= prompt("Will you graduate in May or December?");
-
 var result = findStudentClass (userMonth, userYear);
 console.log(result);
-
+*/
 
 
 
