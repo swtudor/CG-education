@@ -3,9 +3,43 @@
 // Teachers:
 
 //Declarations
-var teacher = {
+var teacher1 = {
   name:"Zak VonBolt",
   department: "Engineering",
+  ratings:[3.8, 4.0, 3.2],
+  addTeacherRating: function(newRating){
+    this.ratings.push(newRating);
+  },
+  getAvgRating: function (){
+    var total = 0;
+    for(var i = 0; i <this.ratings.length; i++) {
+      total += this.ratings[i];
+      }
+      var avg = (total / this.ratings.length).toFixed(2);
+      return avg;
+  },
+};
+
+var teacher2 = {
+  name:"Zippy Zapoodle",
+  department: "Meteorology",
+  ratings:[5.0, 4.0, 4.5],
+  addTeacherRating: function(newRating){
+    this.ratings.push(newRating);
+  },
+  getAvgRating: function (){
+    var total = 0;
+    for(var i = 0; i <this.ratings.length; i++) {
+      total += this.ratings[i];
+      }
+      var avg = (total / this.ratings.length).toFixed(2);
+      return avg;
+  },
+};
+
+var teacher3 = {
+  name:"Pinky PuffPuff",
+  department: "Mammals: Changes Post-Nuclear War",
   ratings:[3.8, 4.0, 3.2],
   addTeacherRating: function(newRating){
     this.ratings.push(newRating);
@@ -121,21 +155,21 @@ console.log(result);
 var course1 = {
   name: "Robotics",
   department: "Engineering",
-  teacher: "Zak VonBolt",
+  teacher: teacher1.name,
   semester: "Fall 2017",
 };
 
 var course2 = {
   name: "Mammals: Changes Post-Nuclear War",
   department: "Biology",
-  teacher: "Pinky PuffPuff",
+  teacher: teacher3.name,
   semester: "Fall 2017",
 };
 
 var course3 = {
   name: "Raining Poodles",
   department: "Meterology",
-  teacher: "Zippy Zapoodle",
+  teacher: teacher2.name,
   semester: "Fall 2017",
 };
 
@@ -167,8 +201,9 @@ function validate (departmentSearched,coursesArray){
   return false;
 }
 
+console.log(course3.teacher + course2.teacher + course1.teacher);
 //Instructions:
-var departmentToSearch = prompt("What department would you like to look for classes in?");
+/*var departmentToSearch = prompt("What department would you like to look for classes in?");
 
 var isValid = false;
 
@@ -181,5 +216,5 @@ while (!isValid){
     departmentToSearch = prompt("That department does not exist, please try again!");
   }
 }
-
+*/
 //console.log("Course: " + courseName +"\nTeacher: " +teacherName +"\nSemester: " +semester);
