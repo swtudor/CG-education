@@ -20,14 +20,14 @@ var teacher = {
   },
 };
 
-var confirmRating = function(newRating){
+/*var confirmRating = function(newRating){
   if(newRating >5.0){
     parseFloat(confirm("Please re-enter a variable that is between 0.0 and 5.0"));
   }else{
     console.log(teacher.ratings);
 };
-
-// Instructions-
+*/
+/* Instructions- !!!!! COMMENTED OUT TEMPORARILY!!!!!
 console.log(teacher.getAvgRating());
 
 teacher.addTeacherRating (parseFloat(prompt("We would like for you to review you instructor. Please enter a rating between 0.0 - 5.0?")));
@@ -35,6 +35,7 @@ teacher.addTeacherRating (parseFloat(prompt("We would like for you to review you
 console.log(teacher.getAvgRating());
 alert("Thanks for you review!" +teacher.name +" average rating is now " +teacher.getAvgRating());
 console.log("Teacher: " + teacher.name  + "\nDepartment: " + teacher.department + "\nRatings: " + teacher.ratings + "\nAvg. Rating: " +teacher.getAvgRating());
+*/
 
 // Students:
 //Declarations:
@@ -117,18 +118,33 @@ console.log(result);
 
 //Courses:
 // Declarations:
-var courseName ="Robotics";
-var semester ="Fall 2017";
+var course1 = {
+  name: "Robotics",
+  department: "Engineering",
+  teacher: "Zak VonBolt",
+  semester: "Fall 2017",
+};
+
+var course2 = {
+  name: "Mammals: Changes Post-Nuclear War",
+  department: "Biology",
+  teacher: "Pinky PuffPuff",
+  semester: "Fall 2017",
+};
+
+var course3 = {
+  name: "Raining Poodles",
+  department: "Meterology",
+  teacher: "Zippy Zapoodle",
+  semester: "Fall 2017",
+};
+
+//var courseName ="Robotics";
+//var semester ="Fall 2017";
 var allCourses=[
-  ["Robotics", "Engineering"],
-  ["Mammals: Changes Post-Nuclear War", "Biology"],
-  ["Birds!", "Biology"],
-  ["Blargh!!!", "Engineering"],
-  ["Origins of the MonoRace", "History"],
-  ["20th Century Baking Techniques", "History"],
-  ["Self-Paving Roads", "Engineering"],
-  ["Raining Poodles", "Meterology"],
-  ["Yippee!","History"]
+  [course1.name, course1.department],
+  [course2.name, course2.department],
+  [course3.name, course3.department],
 ];
 
 function searchCourses (coursesArray, departmentSearched){
@@ -152,7 +168,7 @@ function validate (departmentSearched,coursesArray){
 }
 
 //Instructions:
-/*var departmentToSearch = prompt("What department would you like to look for classes in?");
+var departmentToSearch = prompt("What department would you like to look for classes in?");
 
 var isValid = false;
 
@@ -165,5 +181,5 @@ while (!isValid){
     departmentToSearch = prompt("That department does not exist, please try again!");
   }
 }
-*/
-console.log("Course: " + courseName +"\nTeacher: " +teacherName +"\nSemester: " +semester);
+
+//console.log("Course: " + courseName +"\nTeacher: " +teacherName +"\nSemester: " +semester);
