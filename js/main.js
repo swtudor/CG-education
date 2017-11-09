@@ -3,10 +3,12 @@
 // Teachers:
 
 //Declarations
-var teacher1 = {
-  name:"Zak VonBolt",
-  department: "Engineering",
-  ratings:[3.8, 4.0, 3.2],
+function Teacher (name, department, ratings){
+  this.name=name;
+  this.department=department;
+  this.ratings = [];
+}
+Teacher.prototype = {
   addTeacherRating: function(newRating){
     this.ratings.push(newRating);
   },
@@ -17,42 +19,15 @@ var teacher1 = {
       }
       var avg = (total / this.ratings.length).toFixed(2);
       return avg;
-  },
-};
+  }
+}
 
-var teacher2 = {
-  name:"Zippy Zapoodle",
-  department: "Meteorology",
-  ratings:[5.0, 4.0, 4.5],
-  addTeacherRating: function(newRating){
-    this.ratings.push(newRating);
-  },
-  getAvgRating: function (){
-    var total = 0;
-    for(var i = 0; i <this.ratings.length; i++) {
-      total += this.ratings[i];
-      }
-      var avg = (total / this.ratings.length).toFixed(2);
-      return avg;
-  },
-};
+var teacherZak = new Teacher("Zak VonBolt", "Engineering", [3.8, 4.0, 3.2]);
 
-var teacher3 = {
-  name:"Pinky PuffPuff",
-  department: "Mammals: Changes Post-Nuclear War",
-  ratings:[3.8, 4.0, 3.2],
-  addTeacherRating: function(newRating){
-    this.ratings.push(newRating);
-  },
-  getAvgRating: function (){
-    var total = 0;
-    for(var i = 0; i <this.ratings.length; i++) {
-      total += this.ratings[i];
-      }
-      var avg = (total / this.ratings.length).toFixed(2);
-      return avg;
-  },
-};
+var teacherZippy = new Teacher ("Zippy Zapoodle", "Meteorology", [5.0, 4.0, 4.5]);
+
+var teacherPinky = new Teacher ("Pinky PuffPuff", "Mammals: Changes Post-Nuclear War", [3.8, 4.0, 3.2]);
+
 
 /*var confirmRating = function(newRating){
   if(newRating >5.0){
@@ -73,9 +48,36 @@ console.log("Teacher: " + teacher.name  + "\nDepartment: " + teacher.department 
 
 // Students:
 //Declarations:
-var studentName = "Punkk Y. Gregorson";
-var major ="Painting";
-var gpa =2.8;
+function Student (name, major, email, gpa, courses){
+  this.name = name;
+  this.major = major;
+  this.email = email;
+  this.gpa = gpa;
+  this.courses = [];
+}
+
+Student.prototype = {
+  addCourse = function (course){
+    this.courses.push(course);
+  }
+  dropCourse = function (course){
+    //takes a course parameter and finds it in the course array and removes it.
+    for (i=0, i<this.course.length, i++){
+      if (course === this.course[i]){
+        this.course.pop(course);
+      }
+    }
+  }
+  changeMajor = function (newMajor){
+    //takes a string parameter and changes the Student’s major property
+    this.major = newMajor;
+  }
+}
+
+var student1 = new Student ("Punkk Y. Gregorson", "Painting", "kinda_jerky@email.edu", 2.8, ["Blast Sculpture", "20th Century Baking Techniques"]);
+var student2 = new Student ("Nerdy Gumball", "History", "life_student@email.edu", 4.5, ["Baking & Sociology", "HoverCraft: History"]);
+var student3 = new Student ("Geeker McDragonslayer", "Mechanical Engineering", 3.75, ["Artificial Intelligence", "Self-Paving Roads"]);
+
 var date = new Date();
 var currentYear = date.getFullYear();
 console.log(currentYear);
@@ -142,36 +144,29 @@ var findStudentClass = function (month, year){
 //Students Page -Instructions:
 console.log("Name: " +studentName + "\nMajor: " +major +"\nG.P.A: " +gpa);
 /* !!!!Commented out temprorarily!!!!
-var userYear = prompt("Please enter the year you will gradutate from college.");
+var userYear = prompt("Please enter the year you will graduate from college.");
 var userMonth= prompt("Will you graduate in May or December?");
 var result = findStudentClass (userMonth, userYear);
 console.log(result);
 */
+console.log(student1, student2, student3);
 
 
 
 //Courses:
 // Declarations:
-var course1 = {
-  name: "Robotics",
-  department: "Engineering",
-  teacher: teacher1.name,
-  semester: "Fall 2017",
-};
+function Course (name, department, teacher, semester){
+  this.name = name;
+  this.department = department;
+  this.teacher = teacher;
+  this.semester = semester;
+}
 
-var course2 = {
-  name: "Mammals: Changes Post-Nuclear War",
-  department: "Biology",
-  teacher: teacher3.name,
-  semester: "Fall 2017",
-};
+var course1 = new Course ("Robotics", "Engineering", teacherZak.name, "Fall 2017");
 
-var course3 = {
-  name: "Raining Poodles",
-  department: "Meterology",
-  teacher: teacher2.name,
-  semester: "Fall 2017",
-};
+var course2 = new Course ("Mammals: Changes Post-Nuclear War", "Biology", teacherPinky.name, "Fall 2017");
+
+var course3 = new Course ("Raining Poodles", "Meterology", teacherZippy.name, "Fall 2017");
 
 //var courseName ="Robotics";
 //var semester ="Fall 2017";
@@ -203,7 +198,7 @@ function validate (departmentSearched,coursesArray){
 
 console.log(course3.teacher + course2.teacher + course1.teacher);
 //Instructions:
-/*var departmentToSearch = prompt("What department would you like to look for classes in?");
+var departmentToSearch = toUpperCase(prompt("What department would you like to look for classes in?"));
 
 var isValid = false;
 
@@ -213,8 +208,8 @@ while (!isValid){
     allCourses=searchCourses(allCourses, departmentToSearch);
     alert("Courses available for " + departmentToSearch + " are: " + allCourses);
   }else{
-    departmentToSearch = prompt("That department does not exist, please try again!");
+    departmentToSearch = toUpperCase(prompt("That department does not exist, please try again!"));
   }
 }
-*/
+
 //console.log("Course: " + courseName +"\nTeacher: " +teacherName +"\nSemester: " +semester);
