@@ -1,7 +1,8 @@
 'use strict';
 
-// Teachers:
-
+/*************
+     Teachers:
+**************/
 //Declarations
 function Teacher (name, department, ratings){
   this.name=name;
@@ -26,14 +27,15 @@ var teacherZak = new Teacher("Zak VonBolt", "Engineering", [3.8, 4.0, 3.2]);
 var teacherZippy = new Teacher ("Zippy Zapoodle", "Meteorology", [5.0, 4.0, 4.5]);
 var teacherPinky = new Teacher ("Pinky PuffPuff", "Mammals: Changes Post-Nuclear War", [3.8, 4.0, 3.2]);
 
-/*var confirmRating = function(newRating){
+/* Commented out temporarily! - confirmRating & addTeacherRating
+var confirmRating = function(newRating){
   if(newRating >5.0){
     parseFloat(confirm("Please re-enter a variable that is between 0.0 and 5.0"));
   }else{
     console.log(teacher.ratings);
 };
 
-Instructions- !!!!! COMMENTED OUT TEMPORARILY!!!!!
+// ***** Instructions- ******
 console.log(teacher.getAvgRating());
 
 teacher.addTeacherRating (parseFloat(prompt("We would like for you to review you instructor. Please enter a rating between 0.0 - 5.0?")));
@@ -43,14 +45,16 @@ alert("Thanks for you review!" +teacher.name +" average rating is now " +teacher
 console.log("Teacher: " + teacher.name  + "\nDepartment: " + teacher.department + "\nRatings: " + teacher.ratings + "\nAvg. Rating: " +teacher.getAvgRating());
 */
 
-// Students:
+/******************
+      Students:
+******************/
 //Declarations:
 function Student (name, major, email, gpa, coursesArray){
   this.name = name;
   this.major = major;
   this.email = email;
   this.gpa = gpa;
-  this.courses = [];
+  this.courses = [coursesArray];
 }
 Student.prototype = {
   addCourse: function (course){
@@ -71,20 +75,22 @@ Student.prototype = {
 var student1 = new Student ("Punkk Y. Gregorson", "Painting", "kinda_jerky@email.edu", 2.8, ["Blast Sculpture", "20th Century Baking Techniques"]);
 var student2 = new Student ("Nerdy Gumball", "History", "life_student@email.edu", 4.5, ["Baking & Sociology", "HoverCraft: History"]);
 var student3 = new Student ("Geeker McDragonslayer", "Mechanical Engineering", 3.75, ["Artificial Intelligence", "Self-Paving Roads"]);
+
 var date = new Date();
 var currentYear = date.getFullYear();
+console.log(typeof(currentYear) + " " + currentYear);
 var welcomeCollegeStudent = function(studentClass){alert("Welcome " + studentClass +"!");};
 var welcomeHsStudent = function(studentClass){alert("You're still a " +studentClass +" in highschool!")};
 var gradDate = function(month, year){return month + " " +year;};
 var findStudentClass = function (month, year){
-  year= parseInt(year);
+  year = parseInt(year);
   var gradClass = "This function is not working. FIX YOUR CODE!";
-  if (month==="May"){
-    if (year === currentYear +1 && year <= currentYear +4){
+  if (month === "May"){
+    if (year === currentYear && year <= currentYear +4){
       if (year === currentYear +1){
         gradClass= "Senior";
       }else if (year === currentYear +2){
-        gradClass= "Junior";
+        gradClass = "Junior";
       }else if (year === currentYear +3){
         gradClass = "Sophmore";
       }else if (year ===currentYear +4){
@@ -130,25 +136,24 @@ var findStudentClass = function (month, year){
 
 //Students Page -Instructions:
 
-/* !!!!Commented out temprorarily!!!!
+// !!!!Commented out temprorarily!!!!
+/*var userMonth= prompt("Will you graduate in May or December?");
 var userYear = prompt("Please enter the year you will graduate from college.");
-var userMonth= prompt("Will you graduate in May or December?");
+
 var result = findStudentClass (userMonth, userYear);
 console.log(result);
 
-Adding Course: <course name>
-To Student's Courses: <student name>
-Now they are taking....
-<list course names of all courses the student is taking>
-
-*/
 console.log(student1, student2, student3);
 student1.dropCourse("Blast Sculpture");
 student1.addCourse("Bakers History of the US");
 student1.changeMajor("Meteorology");
 console.log(student1);
-
-//Courses:
+student3.addCourse("Funny Happenings in Literature");
+console.log(student3);
+*/
+/***************
+    Courses:
+****************/
 // Declarations:
 function Course (name, department, teacher, semester){
   this.name = name;
@@ -157,21 +162,24 @@ function Course (name, department, teacher, semester){
   this.semester = semester;
 }
 var course1 = new Course ("Robotics", "Engineering", teacherZak.name, "Fall 2017");
-var course2 = new Course ("Mammals: Changes Post-Nuclear War", "Biology", teacherPinky.name, "Fall 2017");
+var course2 = new Course ("Changes Post-Nuclear War", "History", teacherPinky.name, "Fall 2017");
 var course3 = new Course ("Raining Poodles", "Meteorology", teacherZippy.name, "Fall 2017");
+var course4 = new Course ("Self-Paving Roads", "Engineering", teacherZak.name, "Fall 2017");
+var course5 = new Course ("20th Century Baking Techniques", "History", teacherPinky.name, "Spring 2018");
+var course6 = new Course ("Film and Culture: 1934-1970", "History", teacherPinky.name, "Spring 2018");
+var course7 = new Course ("Automated People Movers", "Engineering", teacherZak.name, "Fall 2017 & Spring 2018");
+var course8 = new Course ("Water: A Force to Be Reckoned With", "Meteorology", teacherZippy.name, "Spring 2018");
+var course9 = new Course ("Atmospheric Pressure", "Meteorology", teacherZippy.name, "Spring 2018");
 
 //var courseName ="Robotics";
 //var semester ="Fall 2017";
-var allCourses=[
-  [course1.name, course1.department],
-  [course2.name, course2.department],
-  [course3.name, course3.department],
-];
+var allCourses=[course1, course2, course3, course4, course5, course6, course7, course8, course9];
+
 function searchCourses (coursesArray, departmentSearched){
   var newArray=[];
   for (var i=0; i<coursesArray.length;i++){
-      if (coursesArray[i][1]===departmentSearched){
-        newArray.push(coursesArray[i][0]);
+      if (coursesArray[i].department === departmentSearched){
+        newArray.push(coursesArray[i].name);
       }else{
         console.log("FAIL");
       }
@@ -179,26 +187,49 @@ function searchCourses (coursesArray, departmentSearched){
 }
 function validate (departmentSearched,coursesArray){
   for (var i=0; i<coursesArray.length;i++){
-    if (coursesArray[i][1]===departmentSearched){
+    if (coursesArray[i].department === departmentSearched){
       return true;
     }
   }
   return false;
 }
+/* function updateCourseDisplay (coursesArray){
+  //loop through the courses, generate an html string for that course,
+  //and add it to your html.
+  for (i=0; 1<courses.length; i++){
+    return (
+      $
+    );
+  };
+}
+*/
+
+/*   (example code from stack overflow)
+   function getPage(title, contents) {
+    return (
+      $("<div>", {id: "container", class: "box"}).append(
+        $("<div>", {class: "title"}).append(
+          $("<h1>").text(title)
+        ),
+        $("<div>").html(contents)
+      )
+    );
+  }
+*/
 
 //Instructions:
-/*var departmentToSearch = toUpperCase(prompt("What department would you like to look for classes in?"));
-
+/*var departmentToSearch = prompt("What department would you like to look for classes in?");
 var isValid = false;
-
 while (!isValid){
   isValid = validate (departmentToSearch, allCourses);
   if(isValid){
-    allCourses=searchCourses(allCourses, departmentToSearch);
+    allCourses = searchCourses(allCourses, departmentToSearch);
     alert("Courses available for " + departmentToSearch + " are: " + allCourses);
   }else{
-    departmentToSearch = toUpperCase(prompt("That department does not exist, please try again!"));
+    departmentToSearch = prompt("That department does not exist, please try again!");
   }
 }
 */
-//console.log("Course: " + courseName +"\nTeacher: " +teacherName +"\nSemester: " +semester);
+$("document").ready(function(){
+  alert($(".course-box").html());
+});
