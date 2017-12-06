@@ -1,14 +1,15 @@
 'use strict';
-
+//Declarations
 /*************
      Teachers:
 **************/
-//Declarations
+
 function Teacher (name, department, ratings){
   this.name=name;
   this.department=department;
   this.ratings = [];
 }
+
 Teacher.prototype = {
   addTeacherRating: function(newRating){
     this.ratings.push(newRating);
@@ -34,21 +35,9 @@ var confirmRating = function(newRating){
   }else{
     console.log(teacher.ratings);
 };
-
-// ***** Instructions- ******
-console.log(teacher.getAvgRating());
-
-teacher.addTeacherRating (parseFloat(prompt("We would like for you to review you instructor. Please enter a rating between 0.0 - 5.0?")));
-//confirmRating(teacher.addTeacherRating);
-console.log(teacher.getAvgRating());
-alert("Thanks for you review!" +teacher.name +" average rating is now " +teacher.getAvgRating());
-console.log("Teacher: " + teacher.name  + "\nDepartment: " + teacher.department + "\nRatings: " + teacher.ratings + "\nAvg. Rating: " +teacher.getAvgRating());
-*/
-
 /******************
       Students:
 ******************/
-//Declarations:
 function Student (name, major, email, gpa, coursesArray){
   this.name = name;
   this.major = major;
@@ -133,34 +122,16 @@ var findStudentClass = function (month, year){
       gradClass= alert("Whoa, hold up! College is still some years away!");
     }return gradClass;
 };
-
-//Students Page -Instructions:
-
-// !!!!Commented out temprorarily!!!!
-/*var userMonth= prompt("Will you graduate in May or December?");
-var userYear = prompt("Please enter the year you will graduate from college.");
-
-var result = findStudentClass (userMonth, userYear);
-console.log(result);
-
-console.log(student1, student2, student3);
-student1.dropCourse("Blast Sculpture");
-student1.addCourse("Bakers History of the US");
-student1.changeMajor("Meteorology");
-console.log(student1);
-student3.addCourse("Funny Happenings in Literature");
-console.log(student3);
-*/
 /***************
     Courses:
 ****************/
-// Declarations:
 function Course (name, department, teacher, semester){
   this.name = name;
   this.department = department;
   this.teacher = teacher;
   this.semester = semester;
 }
+
 var course1 = new Course ("Robotics", "Engineering", teacherZak.name, "Fall 2017");
 var course2 = new Course ("Changes Post-Nuclear War", "History", teacherPinky.name, "Fall 2017");
 var course3 = new Course ("Raining Poodles", "Meteorology", teacherZippy.name, "Fall 2017");
@@ -170,10 +141,11 @@ var course6 = new Course ("Film and Culture: 1934-1970", "History", teacherPinky
 var course7 = new Course ("Automated People Movers", "Engineering", teacherZak.name, "Fall 2017 & Spring 2018");
 var course8 = new Course ("Water: A Force to Be Reckoned With", "Meteorology", teacherZippy.name, "Spring 2018");
 var course9 = new Course ("Atmospheric Pressure", "Meteorology", teacherZippy.name, "Spring 2018");
+var course10= new Course ("Poodle-ology", "Meteorology", teacherZippy.name, "Spring 2018")
 
 //var courseName ="Robotics";
 //var semester ="Fall 2017";
-var allCourses=[course1, course2, course3, course4, course5, course6, course7, course8, course9];
+var allCourses=[course1, course2, course3, course4, course5, course6, course7, course8, course9, course10];
 
 function searchCourses (coursesArray, departmentSearched){
   var newArray=[];
@@ -193,31 +165,89 @@ function validate (departmentSearched,coursesArray){
   }
   return false;
 }
-/* function updateCourseDisplay (coursesArray){
-  //loop through the courses, generate an html string for that course,
-  //and add it to your html.
-  for (i=0; 1<courses.length; i++){
-    return (
-      $
-    );
+
+function updateCourseDisplay (coursesArray){
+  for (var i=0; i<coursesArray.length; i++){
+      $('.course-container').append(
+      `<div class="course-box">
+        <box class="course-left">
+          <h2>`+ coursesArray[i].name +`</h2>
+          <h3>`+ coursesArray[i].department +`</h3>
+        </box>
+        <box class="course-right">
+          <p><em>Teacher: </em> `+ coursesArray[i].teacher +`</p>
+          <p><em>Semester: </em> `+coursesArray[i].semester+`</p>
+        </box>
+      </div>`);
   };
+}
+
+
+
+/* WS3 Code copy/pasted below
+When the user clicks on the button,
+toggle between hiding and showing the dropdown content
+function dropdownOn() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
 }
 */
 
-/*   (example code from stack overflow)
-   function getPage(title, contents) {
-    return (
-      $("<div>", {id: "container", class: "box"}).append(
-        $("<div>", {class: "title"}).append(
-          $("<h1>").text(title)
-        ),
-        $("<div>").html(contents)
-      )
-    );
-  }
+/**********
+  Instructions-
+  **********/
+$(document).ready(function(){
+    updateCourseDisplay(allCourses);
+
+    $('.dropbtn').on('click', function(){
+      $(this).closest('.dropdown').find('.dropdown-content').toggleClass('show');
+      console.log('code has run');
+    });
+});
+//Teachers:
+
+/*console.log(teacher.getAvgRating());
+
+teacher.addTeacherRating (parseFloat(prompt("We would like for you to review you instructor. Please enter a rating between 0.0 - 5.0?")));
+//confirmRating(teacher.addTeacherRating);
+console.log(teacher.getAvgRating());
+alert("Thanks for you review!" +teacher.name +" average rating is now " +teacher.getAvgRating());
+console.log("Teacher: " + teacher.name  + "\nDepartment: " + teacher.department + "\nRatings: " + teacher.ratings + "\nAvg. Rating: " +teacher.getAvgRating());
 */
 
-//Instructions:
+//Students Page:
+// !!!!Commented out temprorarily!!!!
+/*var userMonth= prompt("Will you graduate in May or December?");
+var userYear = prompt("Please enter the year you will graduate from college.");
+
+var result = findStudentClass (userMonth, userYear);
+console.log(result);
+
+console.log(student1, student2, student3);
+student1.dropCourse("Blast Sculpture");
+student1.addCourse("Bakers History of the US");
+student1.changeMajor("Meteorology");
+console.log(student1);
+student3.addCourse("Funny Happenings in Literature");
+console.log(student3);
+*/
+
+
+//Courses:
 /*var departmentToSearch = prompt("What department would you like to look for classes in?");
 var isValid = false;
 while (!isValid){
@@ -230,6 +260,3 @@ while (!isValid){
   }
 }
 */
-$("document").ready(function(){
-  alert($(".course-box").html());
-});

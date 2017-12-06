@@ -5,8 +5,6 @@
     <meta content="width=device-width,maximum-scale=1.0,initial-scale=1.0,minimum-scale=1.0,user-scalable=yes" name="viewport">
     <link href="https://fonts.googleapis.com/css?family=Exo+2:400,700" rel="stylesheet">
     <link href="main.css" media='all' rel='stylesheet'>
-    <script src="js/main.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   </head>
 
   <body>
@@ -21,67 +19,37 @@
       </div>
     </header>
 
+    <section class="dropdown-container">
+      <h2>Filters</h2>
+
+      <div class='dropdown'>
+        <button class='dropbtn'><p>Select Department    &#9660;</p></button>
+        <div class='dropdown-content'>
+            <!-- Department List goes here -->
+            <p>Engineering</p>
+            <p>Meteorology</p>
+            <p>History</p>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class='dropbtn'>Select Semester   &#9660;</button>
+          <div class='dropdown-content'>
+            <!--  semester list goes here -->
+            <p> Fall 2017 </p>
+            <p> Spring 2018 </p>
+          </div>
+      </div>
+
+      <button id="filter" class="button"><h3>Filter</h3></button>
+
+    </section>
+
+
+
+    </div>
     <section class="course-container">
-      <div class="course-box">
-        <box class="course-left">
-          <h2>Robotics</h2>
-          <h3>Engineering</h3>
-        </box>
-
-        <box class="course-right">
-          <p><em>Teacher:</em> Beep Beebot</p>
-          <p><em>Semester:</em> Fall 2017</p>
-        </box>
-      </div>
-
-      <div class="course-box">
-        <box class="course-left">
-          <h2>Mammals: Changes Post-Nuclear War</h2>
-          <h3>Biology</h3>
-        </box>
-
-        <box class="course-right">
-          <p><em>Teacher:</em> Pinky Puffpuff</p>
-          <p><em>Semester:</em> Fall 2017</p>
-        </box>
-      </div>
-
-      <div class="course-box">
-        <box class="course-left">
-          <h2>Self-Paving Roads</h2>
-          <h3>Engineering</h3>
-        </box>
-
-        <box class="course-right">
-          <p><em>Teacher:</em> Zak VonBolt</p>
-          <p><em>Semester:</em> Fall 2017</p>
-        </box>
-      </div>
-
-      <div class="course-box">
-        <box class="course-left">
-          <h2>2oth Century Baking Techniques</h2>
-          <h3>History</h3>
-        </box>
-
-        <box class="course-right">
-          <p><em>Teacher:</em> Prodessor C. Upcake</p>
-          <p><em>Semester:</em> Fall 2017</p>
-        </box>
-      </div>
-
-      <div class="course-box">
-        <box class="course-left">
-          <h2>Raining Poodles</h2>
-          <h3>Meteorology</h3>
-        </box>
-
-        <box class="course-right">
-          <p><em>Teacher:</em> Zippy Zapoodle</p>
-          <p><em>Semester:</em> Fall 2017</p>
-        </box>
-      </div>
-
+      <!-- Dynamic Courses Array content goes here -->
     </section>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/main.js"></script>
