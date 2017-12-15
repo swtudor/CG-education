@@ -66,8 +66,8 @@ var student2 = new Student ("Nerdy Gumball", "History", "life_student@email.edu"
 var student3 = new Student ("Geeker McDragonslayer", "Mechanical Engineering", 3.75, ["Artificial Intelligence", "Self-Paving Roads"]);
 
 var date = new Date();
-var currentYear = date.getFullYear();
-console.log(typeof(currentYear) + " " + currentYear);
+//var currentYear = date.getFullYear();
+//console.log(typeof(currentYear) + " " + currentYear);
 var welcomeCollegeStudent = function(studentClass){alert("Welcome " + studentClass +"!");};
 var welcomeHsStudent = function(studentClass){alert("You're still a " +studentClass +" in highschool!")};
 var gradDate = function(month, year){return month + " " +year;};
@@ -143,20 +143,11 @@ var course8 = new Course ("Water: A Force to Be Reckoned With", "Meteorology", t
 var course9 = new Course ("Atmospheric Pressure", "Meteorology", teacherZippy.name, "Spring 2018");
 var course10= new Course ("Poodle-ology", "Meteorology", teacherZippy.name, "Spring 2018")
 
-//var courseName ="Robotics";
-//var semester ="Fall 2017";
 var allCourses=[course1, course2, course3, course4, course5, course6, course7, course8, course9, course10];
 
-function searchCourses (coursesArray, departmentSearched){
-  var newArray=[];
-  for (var i=0; i<coursesArray.length;i++){
-      if (coursesArray[i].department === departmentSearched){
-        newArray.push(coursesArray[i].name);
-      }else{
-        console.log("FAIL");
-      }
-  } return newArray;
-}
+var allDepartments=["Engineering", "Meteorology", "History"];
+var activeSemesters=["Spring 2018", "Fall 2017"];
+
 function validate (departmentSearched,coursesArray){
   for (var i=0; i<coursesArray.length;i++){
     if (coursesArray[i].department === departmentSearched){
@@ -182,30 +173,42 @@ function updateCourseDisplay (coursesArray){
   };
 }
 
-
-
-/* WS3 Code copy/pasted below
-When the user clicks on the button,
-toggle between hiding and showing the dropdown content
-function dropdownOn() {
-    document.getElementById("myDropdown").classList.toggle("show");
-}
-
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
+/*var departmentToSearch = prompt("What department would you like to look for classes in?");
+var isValid = false;
+while (!isValid){
+  isValid = validate (departmentToSearch, allCourses);
+  if(isValid){
+    allCourses = searchCourses(allCourses, departmentToSearch);
+    alert("Courses available for " + departmentToSearch + " are: " + allCourses);
+  }else{
+    departmentToSearch = prompt("That department does not exist, please try again!");
   }
+}*/
+
+
+function searchCourses (coursesArray, departmentSearched){
+  var newArray=[];
+  for (var i=0; i<coursesArray.length;i++){
+      if (coursesArray[i].department === departmentSearched){
+        newArray.push(coursesArray[i].name);
+        console.log(newArray);
+      }else{
+        console.log("FAIL");
+      }
+  } return newArray;
 }
-*/
+
+function filterButton(array, val){
+  //take val and filter array to only show matching val in array
+  //return new array to be used in other
+  var newArray=[];
+  for(var i=0; i<array.length; i++){
+    if(array[i].department=== val){
+      newArray.push(array[i].department);
+      console.log(newArray);
+    }
+  }return newArray;
+};
 
 /**********
   Instructions-
@@ -217,6 +220,17 @@ $(document).ready(function(){
       $(this).closest('.dropdown').find('.dropdown-content').toggleClass('show');
       console.log('code has run');
     });
+
+    $('.dropdownItem').on('click', function(){
+      let value = $(this).attr('data-dropdown'); //need to grab ID to create match for departmentSearched argument
+      console.log(value);
+      filterButton(allCourses, value);
+    });
+    //listen for click @ dropdown
+    //plug that data into the filter function (and maybe replace the "search" text with selected option)
+    //run Filter
+    //updateCourseDisplay
+
 });
 //Teachers:
 
@@ -248,15 +262,3 @@ console.log(student3);
 
 
 //Courses:
-/*var departmentToSearch = prompt("What department would you like to look for classes in?");
-var isValid = false;
-while (!isValid){
-  isValid = validate (departmentToSearch, allCourses);
-  if(isValid){
-    allCourses = searchCourses(allCourses, departmentToSearch);
-    alert("Courses available for " + departmentToSearch + " are: " + allCourses);
-  }else{
-    departmentToSearch = prompt("That department does not exist, please try again!");
-  }
-}
-*/
