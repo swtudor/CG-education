@@ -158,6 +158,7 @@ function validate (departmentSearched,coursesArray){
 }
 
 function updateCourseDisplay (coursesArray){
+  $('.course-container').empty();
   for (var i=0; i<coursesArray.length; i++){
       $('.course-container').append(
       `<div class="course-box">
@@ -201,13 +202,20 @@ function searchCourses (coursesArray, departmentSearched){
 function filterButton(array, val){
   //take val and filter array to only show matching val in array
   //return new array to be used in other
+  console.log(array, val);
   var newArray=[];
   for(var i=0; i<array.length; i++){
-    if(array[i].department=== val){
-      newArray.push(array[i].department);
-      console.log(newArray);
+    for (var course in array[i]){
+      if(array[i].hasOwnProperty(course)){
+        console.log(array[i][course]);
+        if(val===array[i][course]){
+          newArray.push(array[i]);
+        }
+      }
     }
-  }return newArray;
+  }
+  console.log(newArray);
+  return newArray;
 };
 
 /**********
@@ -218,13 +226,11 @@ $(document).ready(function(){
 
     $('.dropbtn').on('click', function(){
       $(this).closest('.dropdown').find('.dropdown-content').toggleClass('show');
-      console.log('code has run');
     });
 
     $('.dropdownItem').on('click', function(){
-      let value = $(this).attr('data-dropdown'); //need to grab ID to create match for departmentSearched argument
-      console.log(value);
-      filterButton(allCourses, value);
+      var value = $(this).attr('data-dropdown'); //need to grab ID to create match for departmentSearched argument
+      updateCourseDisplay(filterButton(allCourses, value));
     });
     //listen for click @ dropdown
     //plug that data into the filter function (and maybe replace the "search" text with selected option)
