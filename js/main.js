@@ -200,23 +200,20 @@ function searchCourses (coursesArray, departmentSearched){
 }
 
 function filterButton(array, val){
-  //take val and filter array to only show matching val in array
-  //return new array to be used in other
-  console.log(array, val);
   var newArray=[];
   for(var i=0; i<array.length; i++){
     for (var course in array[i]){
       if(array[i].hasOwnProperty(course)){
-        console.log(array[i][course]);
         if(val===array[i][course]){
           newArray.push(array[i]);
         }
       }
     }
   }
-  console.log(newArray);
   return newArray;
 };
+
+
 
 /**********
   Instructions-
@@ -227,16 +224,14 @@ $(document).ready(function(){
     $('.dropbtn').on('click', function(){
       $(this).closest('.dropdown').find('.dropdown-content').toggleClass('show');
     });
-
     $('.dropdownItem').on('click', function(){
       var value = $(this).attr('data-dropdown'); //need to grab ID to create match for departmentSearched argument
       updateCourseDisplay(filterButton(allCourses, value));
+      $(this).closest('.dropdown').find('.dropdown-content').toggleClass('show');
     });
-    //listen for click @ dropdown
-    //plug that data into the filter function (and maybe replace the "search" text with selected option)
-    //run Filter
-    //updateCourseDisplay
 
+//fix filter function to acccept val as an array and reverse the third nested conditional (if array[i][course]===val).
+//create function to grab 'data-attr' then pass $().on('click', 'data-dropdown', fucntionName)
 });
 //Teachers:
 
