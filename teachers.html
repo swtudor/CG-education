@@ -19,8 +19,29 @@
         </ul>
       </div>
     </header>
+    <section class="slideContainer hide">
+      <!-- hidden panel to fadeIn when teacher card is clicked -->
+      <div id="teacherPanel">
+      <box class='panelBox' id="xOut">
+        <!-- tiny little "x" img to close panel @ click -->
+        <h4>X</h4>
+      </box>
+        <box class="panelBox">
+          <!-- teacher info -->
+          <h3>Name: Zak VonBolt</h3>
+          <h3>Department: Engineering</h3>
+          <h3>Current Rating: 4.5</h3>
+        </box>
+        <box class="panelBox">
+          <!-- new rating submission form also "submit" closes panel -->
+          <h2><em>New Rating</em></h2>
+          <input type="text"/>
+          <input type="submit" value="Submit" id="submit"/>
+        </box>
+      </div>
+    </section>
 
-    <section class="container">
+    <section class="container" id='teacherContainer'>
 
       <div class="teacher-box">
         <box class="teacher-name">

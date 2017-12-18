@@ -27,8 +27,8 @@ Teacher.prototype = {
 var teacherZak = new Teacher("Zak VonBolt", "Engineering", [3.8, 4.0, 3.2]);
 var teacherZippy = new Teacher ("Zippy Zapoodle", "Meteorology", [5.0, 4.0, 4.5]);
 var teacherPinky = new Teacher ("Pinky PuffPuff", "Mammals: Changes Post-Nuclear War", [3.8, 4.0, 3.2]);
-
-/* Commented out temporarily! - confirmRating & addTeacherRating
+var allTeachers=[teacherZak, teacherZippy, teacherPinky];
+/* confirmRating & addTeacherRating
 var confirmRating = function(newRating){
   if(newRating >5.0){
     parseFloat(confirm("Please re-enter a variable that is between 0.0 and 5.0"));
@@ -66,8 +66,6 @@ var student2 = new Student ("Nerdy Gumball", "History", "life_student@email.edu"
 var student3 = new Student ("Geeker McDragonslayer", "Mechanical Engineering", 3.75, ["Artificial Intelligence", "Self-Paving Roads"]);
 
 var date = new Date();
-//var currentYear = date.getFullYear();
-//console.log(typeof(currentYear) + " " + currentYear);
 var welcomeCollegeStudent = function(studentClass){alert("Welcome " + studentClass +"!");};
 var welcomeHsStudent = function(studentClass){alert("You're still a " +studentClass +" in highschool!")};
 var gradDate = function(month, year){return month + " " +year;};
@@ -199,7 +197,7 @@ function searchCourses (coursesArray, departmentSearched){
   } return newArray;
 }
 
-function filterButton(array, val){
+function filter(array, val){
   var newArray=[];
   for(var i=0; i<array.length; i++){
     for (var course in array[i]){
@@ -213,8 +211,6 @@ function filterButton(array, val){
   return newArray;
 };
 
-
-
 /**********
   Instructions-
   **********/
@@ -226,12 +222,19 @@ $(document).ready(function(){
     });
     $('.dropdownItem').on('click', function(){
       var value = $(this).attr('data-dropdown'); //need to grab ID to create match for departmentSearched argument
-      updateCourseDisplay(filterButton(allCourses, value));
+      updateCourseDisplay(filter(allCourses, value));
       $(this).closest('.dropdown').find('.dropdown-content').toggleClass('show');
     });
+    $('.teacher-box').on('click', function(){
+      $("#teacherPanel").closest('.slideContainer').slideDown('show');
+    })
+    $('#xOut').on('click',function(){
+      $("#teacherPanel").closest('.slideContainer').slideUp('show');
+    })
+    $('#submit').on('click', function(){
+      $("#teacherPanel").closest('.slideContainer').slideUp('show');
+    })
 
-//fix filter function to acccept val as an array and reverse the third nested conditional (if array[i][course]===val).
-//create function to grab 'data-attr' then pass $().on('click', 'data-dropdown', fucntionName)
 });
 //Teachers:
 
@@ -260,6 +263,3 @@ console.log(student1);
 student3.addCourse("Funny Happenings in Literature");
 console.log(student3);
 */
-
-
-//Courses:

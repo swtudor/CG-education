@@ -160,7 +160,7 @@ body{
 	display:none;
 }
 /***********
-	Dropdown styles
+	Dropdown styles @ Courses Page
 	**********/
 .dropdown-container{
 	display: flex;
@@ -212,12 +212,8 @@ body{
     display: block;
 }
 
-/* Change color of dropdown links on hover
-.dropdown-content p:hover {background-color: #f1f1f1}*/
 
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;}
-.hide {display:none;}
+
 
 /* --------------
     courses.html
@@ -273,6 +269,30 @@ body{
 	border-left: 2px solid #2b4458;
 	padding-left: 4%;
 	width: 20%;
+}
+.slideContainer{
+	margin: 0 30%;
+	height: auto;
+	display: block;
+	width: 55em;
+}
+#teacherPanel{
+	display: flex;
+	flex-flow:row wrap;
+	justify-content: space-evenly;
+	background: #fafafa;
+	margin: 2% 0;
+	padding: 2%;
+	width:50%;
+}
+.panelBox{
+	display:flex;
+	flex-flow:column nowrap;
+	justify-content: space-between;
+}
+#xOut{
+	width:100%;
+	text-align: right;
 }
 
 
@@ -411,3 +431,6 @@ body{
 		width:95%;
 	}
 }
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+.hide{display:none;}
