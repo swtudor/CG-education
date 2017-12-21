@@ -1,13 +1,20 @@
 'use strict';
 //Declarations
+
+/**** whole page *****/
+
+
 /*************
      Teachers:
 **************/
 
-function Teacher (name, department, ratings){
-  this.name=name;
-  this.department=department;
-  this.ratings = [];
+function Teacher (name, department, ratings, coursesArray, imgsrc){
+  this.name = name;
+  this.department = department;
+  this.ratings = [ratings];
+  this.courses = [coursesArray];
+  this.img = new Image ();
+  this.img.src = imgsrc;
 }
 
 Teacher.prototype = {
@@ -18,16 +25,56 @@ Teacher.prototype = {
     var total = 0;
     for(var i = 0; i <this.ratings.length; i++) {
       total += this.ratings[i];
+      console.log("this is the total" + total);
       }
       var avg = (total / this.ratings.length).toFixed(2);
       return avg;
-  }
+  },
 }
+/*  getCourses: function(coursesArray){
+    var coursesTaught = [];
+    for (var i=0; i<allCourses.length;i++){
+      if(teacher.name === allCourses[i].teacher){
+        coursesTaught.push(allCourses[i].name);
+      }
+    }return coursesTaught;
+  }*/
 
-var teacherZak = new Teacher("Zak VonBolt", "Engineering", [3.8, 4.0, 3.2]);
-var teacherZippy = new Teacher ("Zippy Zapoodle", "Meteorology", [5.0, 4.0, 4.5]);
-var teacherPinky = new Teacher ("Pinky PuffPuff", "Mammals: Changes Post-Nuclear War", [3.8, 4.0, 3.2]);
-var allTeachers=[teacherZak, teacherZippy, teacherPinky];
+var teacherZak = new Teacher("Zak VonBolt", "Engineering", [3.8, 4.0, 3.2], ['Self-Paving Roads', 'HoverCraft 101'], "./images/zak.jpg");
+var teacherZippy = new Teacher ("Zippy Zapoodle", "Meteorology", [5.0, 4.0, 4.5], ["It's Raining Poodles", 'Forecasting: Post-Apocalypse'], "./images/zippy.jpg");
+var teacherPinky = new Teacher ("Pinky PuffPuff", "History", [3.8, 4.0, 3.2], ['Gene-Splicing 101','Mammals After the Big One'], "./images/pinky-puffpuff.jpg");
+var teacheryUpcake = new Teacher ("Professor C. Upcake", "History", [4.7, 3.5, 4.0], ['20th Century Baking', 'Baking & Sociology'], "./images/prof-cupcake.jpg");
+var teacherBeep = new Teacher ("Beep Beebott", "Computer Science", [5.0, 5.0, 5.0], ['Artificial Intelligence', 'Robotics 301'], "./images/beep.jpg");
+var allTeachers=[teacherZak, teacherZippy, teacherPinky, teacheryUpcake, teacherBeep];
+function updateTeacherDisplay (teachersArray){
+  $('#teacherContainer').empty();
+  for (var i=0; i<teachersArray.length; i++){
+      $('#teacherContainer').append(
+      `<div class="teacher-box">
+        <box class="teacher-name">
+          <img class="profile-pic" src="` + teachersArray[i].img.src + `" alt='profile picture'/>
+          <div class="name">
+              <h2>`+teachersArray[i].name+`</h2>
+              <h3>`+teachersArray[i].department+`</h3>
+          </div>
+        </box>
+
+        <box class="bottom-box">
+          <box class="teacher-courses">
+            <h3> Courses </h3>
+            <p>`+ teachersArray[i].courses[0][0] +`<br>
+                `+ teachersArray[i].courses[0][1] + ` </p>
+          </box>
+
+          <box class="teacher-rating">
+            <h3>Rating</h3>
+            <p>`+teachersArray[i].ratings+` / 5.0</p>
+          </box>
+        </box>
+      </div>`);
+      //mon 12/18- updating display dynamically BUT getAvgRating not calling AND courses NOT showing properly :/
+  };
+}
 /* confirmRating & addTeacherRating
 var confirmRating = function(newRating){
   if(newRating >5.0){
@@ -35,6 +82,15 @@ var confirmRating = function(newRating){
   }else{
     console.log(teacher.ratings);
 };
+
+/*console.log(teacher.getAvgRating());
+
+teacher.addTeacherRating (parseFloat(prompt("We would like for you to review you instructor. Please enter a rating between 0.0 - 5.0?")));
+//confirmRating(teacher.addTeacherRating);
+console.log(teacher.getAvgRating());
+alert("Thanks for you review!" +teacher.name +" average rating is now " +teacher.getAvgRating());
+console.log("Teacher: " + teacher.name  + "\nDepartment: " + teacher.department + "\nRatings: " + teacher.ratings + "\nAvg. Rating: " +teacher.getAvgRating());
+*/
 /******************
       Students:
 ******************/
@@ -216,6 +272,7 @@ function filter(array, val){
   **********/
 $(document).ready(function(){
     updateCourseDisplay(allCourses);
+    updateTeacherDisplay(allTeachers);
 
     $('.dropbtn').on('click', function(){
       $(this).closest('.dropdown').find('.dropdown-content').toggleClass('show');
@@ -238,14 +295,7 @@ $(document).ready(function(){
 });
 //Teachers:
 
-/*console.log(teacher.getAvgRating());
 
-teacher.addTeacherRating (parseFloat(prompt("We would like for you to review you instructor. Please enter a rating between 0.0 - 5.0?")));
-//confirmRating(teacher.addTeacherRating);
-console.log(teacher.getAvgRating());
-alert("Thanks for you review!" +teacher.name +" average rating is now " +teacher.getAvgRating());
-console.log("Teacher: " + teacher.name  + "\nDepartment: " + teacher.department + "\nRatings: " + teacher.ratings + "\nAvg. Rating: " +teacher.getAvgRating());
-*/
 
 //Students Page:
 // !!!!Commented out temprorarily!!!!
