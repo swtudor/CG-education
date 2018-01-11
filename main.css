@@ -156,9 +156,7 @@ body{
 	border: none;
 	cursor: pointer;
 }
-#filter{
-	display:none;
-}
+
 /***********
 	Dropdown styles @ Courses Page
 	**********/
@@ -211,9 +209,6 @@ body{
     text-decoration: none;
     display: block;
 }
-
-
-
 
 /* --------------
     courses.html

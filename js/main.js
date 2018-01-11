@@ -1,8 +1,7 @@
 'use strict';
 //Declarations
-
-/**** whole page *****/
-
+//global variables & helper functions:
+const sum = (a, b) => a + b;
 
 /*************
      Teachers:
@@ -16,36 +15,65 @@ function Teacher (name, department, ratings, coursesArray, imgsrc){
   this.img = new Image ();
   this.img.src = imgsrc;
 }
-
 Teacher.prototype = {
   addTeacherRating: function(newRating){
     this.ratings.push(newRating);
   },
-  getAvgRating: function (){
-    var total = 0;
-    for(var i = 0; i <this.ratings.length; i++) {
+  ratingsSum: function(){
+    //console.log('Teacher.ratingsSum: ' + this.ratings[0].reduce(sum, 0));
+    return this.ratings[0].reduce(sum, 0);
+  },
+  /*getAvgRating: function (){
+    let total = 0;
+    for(let i = 0; i <this.ratings.length; i++) {
       total += this.ratings[i];
+      console.log("Teacher.getAvgRating: " + total);
+      }
+      let avg = (total / this.ratings.length).toFixed(2);
+      return avg;
+  },*/
+  getAvg: function(){
+    let total = this.ratingsSum;
+    let len = this.ratings[0].length.toFixed(2);
+  //  let avg = (total/this.ratings[0].length).toFixed(2);
+    console.log(len);
+    console.log(total / len); //should be 11 / 3
+    return total / len;
+  },
+  getCourses: function(coursesArray){
+     var coursesTaught = [];
+     for (var i=0; i<coursesArray.length; i++){
+       if(this.courses===coursesArray[i].name){
+         coursesTaught.push(coursesArray[i].name);
+       }
+     }return coursesTaught;
+   },
+}
+
+const getAvgRating = function(ratings){
+    var total = 0;
+    for(var i = 0; i <ratings.length; i++) {
+      total += ratings[i];
       console.log("this is the total" + total);
       }
-      var avg = (total / this.ratings.length).toFixed(2);
+      var avg = (total / ratings.length).toFixed(2);
       return avg;
-  },
 }
-/*  getCourses: function(coursesArray){
-    var coursesTaught = [];
-    for (var i=0; i<allCourses.length;i++){
-      if(teacher.name === allCourses[i].teacher){
-        coursesTaught.push(allCourses[i].name);
-      }
-    }return coursesTaught;
-  }*/
 
-var teacherZak = new Teacher("Zak VonBolt", "Engineering", [3.8, 4.0, 3.2], ['Self-Paving Roads', 'HoverCraft 101'], "./images/zak.jpg");
-var teacherZippy = new Teacher ("Zippy Zapoodle", "Meteorology", [5.0, 4.0, 4.5], ["It's Raining Poodles", 'Forecasting: Post-Apocalypse'], "./images/zippy.jpg");
-var teacherPinky = new Teacher ("Pinky PuffPuff", "History", [3.8, 4.0, 3.2], ['Gene-Splicing 101','Mammals After the Big One'], "./images/pinky-puffpuff.jpg");
-var teacheryUpcake = new Teacher ("Professor C. Upcake", "History", [4.7, 3.5, 4.0], ['20th Century Baking', 'Baking & Sociology'], "./images/prof-cupcake.jpg");
-var teacherBeep = new Teacher ("Beep Beebott", "Computer Science", [5.0, 5.0, 5.0], ['Artificial Intelligence', 'Robotics 301'], "./images/beep.jpg");
-var allTeachers=[teacherZak, teacherZippy, teacherPinky, teacheryUpcake, teacherBeep];
+//const arr = [0, 3, 7, 90, 6];
+var teacherZak = new Teacher("Zak VonBolt", "Engineering", [3.8, 4.0, 3.2], ['MATH 1800', 'ENGR 1010'], "./images/zak.jpg");
+var teacher2 = new Teacher ("Jack English", "Meteorology", [5.0, 4.0, 4.5], ["METEO 101", 'METEO 401'], "./images/zippy.jpg");
+var teacher3 = new Teacher ("Martha Blick", "History", [3.8, 4.0, 3.2], ['Modern History', 'HIST:601'], "./images/pinky-puffpuff.jpg");
+var teacher4 = new Teacher ("Jane Reed", "History", [4.7, 3.5, 4.0], ['20th Cent. Russia', 'Hist 101'], "./images/prof-cupcake.jpg");
+var teacher5 = new Teacher ("Steve Botts", "Computer Science", [5.0, 5.0, 5.0], ['Algorithms', 'Robotics 301'], "./images/beep.jpg");
+var allTeachers=[teacherZak, teacher2, teacher3, teacher4, teacher5];
+
+
+//console.log('getAvgRating function w/Teacher obj.ratings passed: ' + getAvgRating(teacherZak.ratings));
+console.log('teacher.ratingsSum: ' + teacherZak.ratingsSum());
+console.log('teacher.getAvg: ' + teacherZak.getAvg());
+//console.log(teacherZak.addTeacherRating(4.0));
+
 function updateTeacherDisplay (teachersArray){
   $('#teacherContainer').empty();
   for (var i=0; i<teachersArray.length; i++){
@@ -54,43 +82,39 @@ function updateTeacherDisplay (teachersArray){
         <box class="teacher-name">
           <img class="profile-pic" src="` + teachersArray[i].img.src + `" alt='profile picture'/>
           <div class="name">
-              <h2>`+teachersArray[i].name+`</h2>
-              <h3>`+teachersArray[i].department+`</h3>
+              <h2>` + teachersArray[i].name + `</h2>
+              <h3>` + teachersArray[i].department + `</h3>
           </div>
         </box>
 
         <box class="bottom-box">
           <box class="teacher-courses">
             <h3> Courses </h3>
-            <p>`+ teachersArray[i].courses[0][0] +`<br>
-                `+ teachersArray[i].courses[0][1] + ` </p>
+            <p>` + teachersArray[i].courses[0][0] + `<br>
+                ` + teachersArray[i].courses[0][1] + `</p>
           </box>
 
           <box class="teacher-rating">
             <h3>Rating</h3>
-            <p>`+teachersArray[i].ratings+` / 5.0</p>
+            <p>`+teachersArray[i].getAvg()+` / 5.0</p>
           </box>
         </box>
-      </div>`);
-      //mon 12/18- updating display dynamically BUT getAvgRating not calling AND courses NOT showing properly :/
+      </div>`
+    );
   };
 }
-/* confirmRating & addTeacherRating
-var confirmRating = function(newRating){
-  if(newRating >5.0){
-    parseFloat(confirm("Please re-enter a variable that is between 0.0 and 5.0"));
-  }else{
-    console.log(teacher.ratings);
-};
 
-/*console.log(teacher.getAvgRating());
+function updateTeacherPanel (teachObj){
+  $('#teacherInfo').empty();
+  $('#teacherInfo').append(
+      `<h3>Name: `+ teachObj.name`</h3>
+      <h3>Department: ` + teachObj.department`</h3>
+      <h3>Current Rating: `+`</h3>`
+  );
+}
 
-teacher.addTeacherRating (parseFloat(prompt("We would like for you to review you instructor. Please enter a rating between 0.0 - 5.0?")));
-//confirmRating(teacher.addTeacherRating);
-console.log(teacher.getAvgRating());
-alert("Thanks for you review!" +teacher.name +" average rating is now " +teacher.getAvgRating());
-console.log("Teacher: " + teacher.name  + "\nDepartment: " + teacher.department + "\nRatings: " + teacher.ratings + "\nAvg. Rating: " +teacher.getAvgRating());
-*/
+
+
 /******************
       Students:
 ******************/
@@ -117,65 +141,14 @@ Student.prototype = {
   }
 }
 
-var student1 = new Student ("Punkk Y. Gregorson", "Painting", "kinda_jerky@email.edu", 2.8, ["Blast Sculpture", "20th Century Baking Techniques"]);
-var student2 = new Student ("Nerdy Gumball", "History", "life_student@email.edu", 4.5, ["Baking & Sociology", "HoverCraft: History"]);
-var student3 = new Student ("Geeker McDragonslayer", "Mechanical Engineering", 3.75, ["Artificial Intelligence", "Self-Paving Roads"]);
+//student object (name, major, email, gpa, courseArray)
+var student1 = new Student ("Daniel McGregor", "Painting", "email@school.edu", 3.5, ["3D Desgin", "20th Cent Art"]);
+var student2 = new Student ("Grace Regale", "History", "email@school.edu", 4.0, ["Magic in the Middle Ages", "Modern History"]);
+var student3 = new Student ("Owen James", "Mechanical Engineering", 'email@school.edu', 3.75, ["Artificial Intelligence", "Painting 101"]);
+const student4 = new Student ("Iris Edwards", "Engineering", 'email@school.edu', 3.8, ['Geology', 'Civil Engineering']);
+const student5 = new Student ('Elsie Parks', 'Dance', 'email@chool.edu', 3.0, ['Modern Dance', 'Ballet:301']);
+const student6 = new Student ('Elliot Majors', 'Meteorology', 'email@school.edu', 3.5, ['Meteo:201', '3D Design']);
 
-var date = new Date();
-var welcomeCollegeStudent = function(studentClass){alert("Welcome " + studentClass +"!");};
-var welcomeHsStudent = function(studentClass){alert("You're still a " +studentClass +" in highschool!")};
-var gradDate = function(month, year){return month + " " +year;};
-var findStudentClass = function (month, year){
-  year = parseInt(year);
-  var gradClass = "This function is not working. FIX YOUR CODE!";
-  if (month === "May"){
-    if (year === currentYear && year <= currentYear +4){
-      if (year === currentYear +1){
-        gradClass= "Senior";
-      }else if (year === currentYear +2){
-        gradClass = "Junior";
-      }else if (year === currentYear +3){
-        gradClass = "Sophmore";
-      }else if (year ===currentYear +4){
-        gradClass = "Freshman";
-      } alert(welcomeCollegeStudent(gradClass));
-    }else if (year >= currentYear+5 && year <=currentYear+8){
-      if (year === currentYear +5){
-        gradClass= "Highschool Senior";
-      }else if (year === currentYear +6){
-        gradClass= "Highschool Junior";
-      }else if (year === currentYear +7){
-        gradClass= "Highschool Sophmore";
-      }else if (year === currentYear +8){
-        gradClass= "Highschool Freshman";
-      } alert(welcomeHsStudent(gradClass));
-    }
-  }else if (month === "December"){
-      if (year === currentYear  && year <= currentYear +3){
-        if (year === currentYear){
-          gradClass= "Senior";
-        }else if (year === currentYear +1){
-          gradClass= "Junior";
-        }else if (year === currentYear +2){
-          gradClass = "Sophmore";
-        }else if (year ===currentYear +3){
-          gradClass = "Freshman";
-        }alert(welcomeCollegeStudent(gradClass));
-      }else if (year >= currentYear+4 && year <=currentYear+7){
-        if (year === currentYear +4){
-          gradClass= "Highschool Senior";
-        }else if (year === currentYear +5){
-          gradClass= "Highschool Junior";
-        }else if (year === currentYear +6){
-          gradClass= "Highschool Sophmore";
-        }else if (year === currentYear +7){
-          gradClass= "Highschool Freshman";
-        }alert(welcomeHsStudent(gradClass));
-      }
-    }else if (year >= currentYear +9){
-      gradClass= alert("Whoa, hold up! College is still some years away!");
-    }return gradClass;
-};
 /***************
     Courses:
 ****************/
@@ -187,18 +160,17 @@ function Course (name, department, teacher, semester){
 }
 
 var course1 = new Course ("Robotics", "Engineering", teacherZak.name, "Fall 2017");
-var course2 = new Course ("Changes Post-Nuclear War", "History", teacherPinky.name, "Fall 2017");
-var course3 = new Course ("Raining Poodles", "Meteorology", teacherZippy.name, "Fall 2017");
-var course4 = new Course ("Self-Paving Roads", "Engineering", teacherZak.name, "Fall 2017");
-var course5 = new Course ("20th Century Baking Techniques", "History", teacherPinky.name, "Spring 2018");
-var course6 = new Course ("Film and Culture: 1934-1970", "History", teacherPinky.name, "Spring 2018");
-var course7 = new Course ("Automated People Movers", "Engineering", teacherZak.name, "Fall 2017 & Spring 2018");
-var course8 = new Course ("Water: A Force to Be Reckoned With", "Meteorology", teacherZippy.name, "Spring 2018");
-var course9 = new Course ("Atmospheric Pressure", "Meteorology", teacherZippy.name, "Spring 2018");
-var course10= new Course ("Poodle-ology", "Meteorology", teacherZippy.name, "Spring 2018")
+var course2 = new Course ("20th Cent. Russia", "History", teacher2.name, "Fall 2017");
+var course3 = new Course ("METEO 101", "Meteorology", teacher3.name, "Fall 2017");
+var course4 = new Course ("ENGR 101", "Engineering", teacherZak.name, "Fall 2017");
+var course5 = new Course ("Modern Hist", "History", teacher2.name, "Spring 2018");
+var course6 = new Course ("Film and Culture: 1934-1970", "History", teacher4.name, "Spring 2018");
+var course7 = new Course ("Civil ENGR 301", "Engineering", teacher5.name, "Fall 2017 & Spring 2018");
+var course8 = new Course ("METEO 400", "Meteorology", teacher3.name, "Spring 2018");
+var course9 = new Course ("HIST 201", "History", teacher4.name, "Spring 2018");
+var course10= new Course ("METEO 302", "Meteorology", teacher5.name, "Spring 2018")
 
 var allCourses=[course1, course2, course3, course4, course5, course6, course7, course8, course9, course10];
-
 var allDepartments=["Engineering", "Meteorology", "History"];
 var activeSemesters=["Spring 2018", "Fall 2017"];
 
@@ -227,19 +199,6 @@ function updateCourseDisplay (coursesArray){
       </div>`);
   };
 }
-
-/*var departmentToSearch = prompt("What department would you like to look for classes in?");
-var isValid = false;
-while (!isValid){
-  isValid = validate (departmentToSearch, allCourses);
-  if(isValid){
-    allCourses = searchCourses(allCourses, departmentToSearch);
-    alert("Courses available for " + departmentToSearch + " are: " + allCourses);
-  }else{
-    departmentToSearch = prompt("That department does not exist, please try again!");
-  }
-}*/
-
 
 function searchCourses (coursesArray, departmentSearched){
   var newArray=[];
@@ -274,6 +233,7 @@ $(document).ready(function(){
     updateCourseDisplay(allCourses);
     updateTeacherDisplay(allTeachers);
 
+    // search filters/dropdowns on Courses page :
     $('.dropbtn').on('click', function(){
       $(this).closest('.dropdown').find('.dropdown-content').toggleClass('show');
     });
@@ -282,8 +242,14 @@ $(document).ready(function(){
       updateCourseDisplay(filter(allCourses, value));
       $(this).closest('.dropdown').find('.dropdown-content').toggleClass('show');
     });
+    $('#clear').on('click', function(){
+      updateCourseDisplay(allCourses);
+    });
+
+    //slide panel on Teachers page
     $('.teacher-box').on('click', function(){
       $("#teacherPanel").closest('.slideContainer').slideDown('show');
+      //call updateTeacherPanel here (update it with $(this))
     })
     $('#xOut').on('click',function(){
       $("#teacherPanel").closest('.slideContainer').slideUp('show');
@@ -293,23 +259,3 @@ $(document).ready(function(){
     })
 
 });
-//Teachers:
-
-
-
-//Students Page:
-// !!!!Commented out temprorarily!!!!
-/*var userMonth= prompt("Will you graduate in May or December?");
-var userYear = prompt("Please enter the year you will graduate from college.");
-
-var result = findStudentClass (userMonth, userYear);
-console.log(result);
-
-console.log(student1, student2, student3);
-student1.dropCourse("Blast Sculpture");
-student1.addCourse("Bakers History of the US");
-student1.changeMajor("Meteorology");
-console.log(student1);
-student3.addCourse("Funny Happenings in Literature");
-console.log(student3);
-*/
