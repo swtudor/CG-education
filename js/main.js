@@ -129,12 +129,16 @@ function updateTeacherDisplay (teachersArray){
   $('#teacherContainer').empty();
   for (var i=0; i<teachersArray.length; i++){
       $('#teacherContainer').append(
-      `<div class="teacher-box">
+      `<div class="teacher-box"
+          data-teacherName= "` + teachersArray[i].name + `"
+          data-teacherDept= '` + teachersArray[i].department + `'
+          data-teacherAvg= '`+ teachersArray[i].getAvg() +`'>
+
         <box class="teacher-name">
           <img class="profile-pic" src="` + teachersArray[i].img.src + `" alt='profile picture'/>
           <div class="name">
-              <h2>` + teachersArray[i].name + `</h2>
-              <h3>` + teachersArray[i].department + `</h3>
+              <h2> ` + teachersArray[i].name + `</h2>
+              <h3> ` + teachersArray[i].department + `</h3>
           </div>
         </box>
 
@@ -147,7 +151,7 @@ function updateTeacherDisplay (teachersArray){
 
           <box class="teacher-rating">
             <h3>Rating</h3>
-            <p>`+teachersArray[i].getAvg()+` / 5.0</p>
+            <p> `+teachersArray[i].getAvg()+` / 5.0</p>
           </box>
         </box>
       </div>`
@@ -155,12 +159,13 @@ function updateTeacherDisplay (teachersArray){
   };
 }
 
-function updateTeacherPanel (teachObj){
+function updateTeacherPanel (name, dept, avg){
   $('#teacherInfo').empty();
+
   $('#teacherInfo').append(
-      `<h3>Name: `+ teachObj.name`</h3>
-      <h3>Department: ` + teachObj.department`</h3>
-      <h3>Current Rating: `+ teachObj.getAvg()`</h3>`
+      `<h3>Name: `+ name +`</h3>
+      <h3>Department: ` + dept +`</h3>
+      <h3>Current Rating: `+ avg +`</h3>`
   );
 }
 
@@ -246,23 +251,37 @@ $(document).ready(function(){
     $('.dropbtn').on('click', function(){
       $(this).closest('.dropdown').find('.dropdown-content').toggleClass('show');
     });
+
     $('.dropdownItem').on('click', function(){
       var value = $(this).attr('data-dropdown');
       updateCourseDisplay(filter(allCourses, value));
       $(this).closest('.dropdown').find('.dropdown-content').toggleClass('show');
     });
+
     $('#clear').on('click', function(){
       updateCourseDisplay(allCourses);
     });
 
     //slide panel on Teachers page
     $('.teacher-box').on('click', function(){
-      //call updateTeacherPanel here (update it with $(this))
-      $("#teacherPanel").closest('.slideContainer').slideDown('show');
+      //call updateTeacherPanel here (update it with data-attr & $(this))
+
+      //currently not grabbing the correct data-attr!!
+      var name = $(this).attr('data-teacherName');
+      var dept = $(this).attr('data-teacherDept');
+      var avg = $(this).attr('data-teacherAvg');
+      console.log($(this));
+      console.log(name, dept, avg);
+
+      updateTeacherPanel(name, dept, avg);
+
+    $("#teacherPanel").closest('.slideContainer').slideDown('show');
     })
+
     $('#xOut').on('click',function(){
       $("#teacherPanel").closest('.slideContainer').slideUp('show');
     })
+
     $('#submit').on('click', function(){
       $("#teacherPanel").closest('.slideContainer').slideUp('show');
       //update teacher.ratings
